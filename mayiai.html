@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>May I AI | Partner Governance Engine</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    :root {
+      --bg: #05070a;
+      --bg-alt: #0d1016;
+      --text: #f5f7fb;
+      --muted: #8b98a5;
+      --accent-blue: #00F2FE;
+      --accent-orange: #FF7A1A;
+      --card-bg: #0b0f15;
+      --border: #1b2433;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background: radial-gradient(circle at top left, #101522 0, #05070a 55%);
+      color: var(--text);
+      min-height: 100vh;
+    }
+    a { color: var(--accent-blue); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+    header {
+      border-bottom: 1px solid var(--border);
+      background: linear-gradient(to right, rgba(0,242,254,0.06), rgba(255,122,26,0.04));
+    }
+    .nav {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 18px 20px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .logo {
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      font-size: 0.9rem;
+      color: var(--accent-blue);
+    }
+    .logo span { color: var(--accent-orange); }
+    .nav-links {
+      display: flex;
+      gap: 20px;
+      font-size: 0.9rem;
+    }
+    .nav-links a { color: var(--muted); }
+    .nav-links a.active { color: var(--accent-blue); }
+    main {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 40px 20px 60px;
+    }
+    h1 {
+      font-size: 2rem;
+      margin-bottom: 20px;
+    }
+    h2 {
+      font-size: 1.3rem;
+      margin-top: 30px;
+      margin-bottom: 10px;
+    }
+    p {
+      color: var(--muted);
+      font-size: 0.95rem;
+      max-width: 900px;
+      margin-bottom: 14px;
+      line-height: 1.5;
+    }
+    ul {
+      margin-left: 20px;
+      margin-bottom: 14px;
+    }
+    li {
+      color: var(--muted);
+      font-size: 0.9rem;
+      line-height: 1.5;
+      margin-bottom: 6px;
+    }
+    .card {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 20px;
+      margin-top: 24px;
+    }
+    .card h3 {
+      font-size: 1.1rem;
+      margin-bottom: 10px;
+    }
+    .pill-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 12px;
+    }
+    .pill {
+      padding: 4px 8px;
+      border-radius: 999px;
+      border: 1px solid var(--border);
+      background: #05070a;
+      color: var(--muted);
+      font-size: 0.75rem;
+    }
+    .pill.blue { color: var(--accent-blue); border-color: rgba(0,242,254,0.4); }
+    .pill.orange { color: var(--accent-orange); border-color: rgba(255,122,26,0.5); }
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 30px 20px 40px;
+      text-align: center;
+      color: var(--muted);
+      font-size: 0.8rem;
+      background: #05070a;
+    }
+    footer .links {
+      margin-top: 10px;
+      display: flex;
+      justify-content: center;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+    footer .links a {
+      color: var(--accent-blue);
+      font-size: 0.8rem;
+    }
+  </style>
+</head>
+
+<body>
+<header>
+  <div class="nav">
+    <div class="logo">BaseLayerOS <span>FortressCodeAI</span></div>
+    <nav class="nav-links">
+      <a href="index.html">Home</a>
+      <a href="products.html">Marketplace</a>
+      <a href="mayiai.html" class="active">Partners</a>
+      <a href="architecture.html">Architecture</a>
+      <a href="kali-schema.html">Kali Schema</a>
+      <a href="contact.html">Contact</a>
+      <a href="terms.html">Legal</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+  <h1>May I AI — Partner Governance Engine</h1>
+  <p>
+    <strong>May I AI</strong> is a governance engine that produces Kali‑standard envelopes describing
+    identity, capability, policy, invariants, and execution plans. BaseLayerOS does not embed
+    governance logic internally—governance engines remain external, modular, and swappable.
+  </p>
+
+  <h2>Role of May I AI</h2>
+  <p>
+    May I AI provides governance decisions, capability boundaries, and policy constraints. These
+    decisions are expressed through Kali envelopes, which BaseLayerOS validates and enforces
+    deterministically.
+  </p>
+
+  <div class="card">
+    <h3>What May I AI Provides</h3>
+    <ul>
+      <li>Identity & role evaluation</li>
+      <li>Capability authorization</li>
+      <li>Policy selection & enforcement logic</li>
+      <li>Invariant requirements</li>
+      <li>Execution plan construction</li>
+    </ul>
+    <div class="pill-row">
+      <div class="pill blue">Kali envelopes</div>
+      <div class="pill orange">Policy decisions</div>
+      <div class="pill">Capability boundaries</div>
+      <div class="pill">Invariant requirements</div>
+    </div>
+  </div>
+
+  <h2>Integration with BaseLayerOS</h2>
+  <p>
+    May I AI integrates with BaseLayerOS through the Kali Standard Envelope Schema. BaseLayerOS
+    validates envelopes deterministically using rulebook constraints, invariant checks, and
+    cryptographic routing seals.
+  </p>
+
+  <div class="card">
+    <h3>Integration Flow</h3>
+    <ul>
+      <li>May I AI generates a Kali envelope</li>
+      <li>Envelope is submitted to BaseLayerOS</li>
+      <li>Schema validation & rulebook checks</li>
+      <li>Invariant evaluation</li>
+      <li>Deterministic execution or refusal</li>
+      <li>Replayable audit trace generated</li>
+    </ul>
+    <div class="pill-row">
+      <div class="pill blue">Deterministic validation</div>
+      <div class="pill orange">Replayable traces</div>
+      <div class="pill">Modular governance</div>
+    </div>
+  </div>
+
+  <h2>Why Keep Governance External?</h2>
+  <p>
+    Governance engines evolve rapidly across industries. By keeping governance external, BaseLayerOS
+    ensures modularity, swappability, and sector‑specific flexibility without changing the substrate.
+  </p>
+
+  <ul>
+    <li>Different industries can use different governance engines</li>
+    <li>Policy logic remains independent from deterministic execution</li>
+    <li>Hyperscaler reviewers can validate governance separately</li>
+    <li>No vendor lock‑in</li>
+  </ul>
+
+  <h2>Enterprise Use Cases</h2>
+  <p>
+    May I AI is suitable for enterprises requiring structured governance decisions across:
+  </p>
+
+  <ul>
+    <li>AI safety & alignment</li>
+    <li>Finance risk & controls</li>
+    <li>Healthcare compliance</li>
+    <li>GRC systems</li>
+    <li>Sector‑specific policy engines</li>
+  </ul>
+
+  <div class="card">
+    <h3>Contact</h3>
+    <p>
+      For partnership or integration inquiries related to May I AI:
+    </p>
+    <p><strong>fortresscodeai@outlook.com</strong></p>
+  </div>
+</main>
+
+<footer>
+  <div>BaseLayerOS — FortressCodeAI</div>
+  <div>Contact: fortresscodeai@outlook.com</div>
+  <div class="links">
+    <a href="privacy.html">Privacy Policy</a>
+    <a href="terms.html">Terms of Service</a>
+    <a href="refunds.html">Refund Policy</a>
+    <a href="contact.html">Contact</a>
+    <a href="products.html">Enterprise Marketplace</a>
+  </div>
+  <div style="margin-top:10px;">© 2026 FortressCodeAI</div>
+</footer>
+</body>
+</html>
