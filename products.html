@@ -2,10 +2,9 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Enterprise Marketplace | BaseLayerOS + MayIAI</title>
+  <title>Enterprise Marketplace | BaseLayerOS</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <style>
-    /* ——— YOUR ORIGINAL STYLES (unchanged) ——— */
     :root {
       --bg: #05070a;
       --bg-alt: #0d1016;
@@ -52,111 +51,65 @@
     }
     .nav-links a { color: var(--muted); }
     .nav-links a.active { color: var(--accent-blue); }
-    .nav-cta {
-      padding: 8px 16px;
-      border-radius: 999px;
-      border: 1px solid rgba(0,242,254,0.4);
-      color: var(--accent-blue);
-      font-size: 0.85rem;
-    }
     main {
       max-width: 1100px;
       margin: 0 auto;
       padding: 40px 20px 60px;
     }
-    .hero {
-      margin-bottom: 30px;
-    }
-    .hero h1 {
+    h1 {
       font-size: 2rem;
+      margin-bottom: 20px;
+    }
+    h2 {
+      font-size: 1.3rem;
+      margin-top: 30px;
       margin-bottom: 10px;
     }
-    .hero p {
+    p {
       color: var(--muted);
       font-size: 0.95rem;
-      max-width: 720px;
+      max-width: 900px;
+      margin-bottom: 14px;
+      line-height: 1.5;
     }
-    .hero-tagline {
-      font-size: 0.8rem;
-      color: var(--accent-orange);
-      text-transform: uppercase;
-      letter-spacing: 0.12em;
-      margin-bottom: 6px;
-    }
-    .packs-grid {
+    .grid-3 {
       display: grid;
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: 20px;
-      margin-top: 26px;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 18px;
+      margin-top: 20px;
     }
     @media (max-width: 900px) {
-      .packs-grid { grid-template-columns: 1fr; }
+      .grid-3 { grid-template-columns: 1fr; }
     }
-    .pack-card {
+    .card {
       background: var(--card-bg);
-      border-radius: 16px;
+      border-radius: 14px;
       border: 1px solid var(--border);
-      padding: 18px 18px 20px;
-      position: relative;
-      overflow: hidden;
+      padding: 16px 16px 18px;
+      font-size: 0.9rem;
     }
-    .pack-header {
-      display: flex;
-      justify-content: space-between;
-      align-items: flex-start;
+    .card h3 {
+      font-size: 1rem;
+      margin-bottom: 6px;
+    }
+    .card p {
+      color: var(--muted);
+      font-size: 0.85rem;
       margin-bottom: 10px;
     }
-    .pack-title {
-      font-size: 1.05rem;
-      font-weight: 600;
+    .price {
+      font-size: 0.95rem;
+      color: var(--accent-blue);
+      margin-top: 6px;
     }
-    .pack-tag {
+    .pill {
       font-size: 0.75rem;
       padding: 4px 8px;
       border-radius: 999px;
       border: 1px solid rgba(0,242,254,0.4);
       color: var(--accent-blue);
-    }
-    .pack-body {
-      font-size: 0.85rem;
-      color: var(--muted);
-      margin-bottom: 10px;
-    }
-    .pack-meta {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
+      display: inline-block;
       margin-top: 8px;
-      font-size: 0.8rem;
-    }
-    .price {
-      color: var(--accent-blue);
-      font-weight: 600;
-    }
-    .sector {
-      color: var(--accent-orange);
-    }
-    .pill-row {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 6px;
-      margin-top: 10px;
-      font-size: 0.75rem;
-    }
-    .pill {
-      padding: 4px 8px;
-      border-radius: 999px;
-      border: 1px solid var(--border);
-      background: #05070a;
-      color: var(--muted);
-    }
-    .pill.blue { border-color: rgba(0,242,254,0.4); color: var(--accent-blue); }
-    .pill.orange { border-color: rgba(255,122,26,0.5); color: var(--accent-orange); }
-    .cta-row {
-      margin-top: 24px;
-      display: flex;
-      flex-wrap: wrap;
-      gap: 12px;
     }
     .btn-primary {
       padding: 10px 18px;
@@ -167,20 +120,7 @@
       font-size: 0.9rem;
       font-weight: 600;
       cursor: pointer;
-    }
-    .btn-secondary {
-      padding: 10px 18px;
-      border-radius: 999px;
-      border: 1px solid var(--border);
-      background: rgba(5,7,10,0.9);
-      color: var(--muted);
-      font-size: 0.9rem;
-      cursor: pointer;
-    }
-    .note {
-      margin-top: 18px;
-      font-size: 0.8rem;
-      color: var(--muted);
+      margin-top: 10px;
     }
     footer {
       border-top: 1px solid var(--border);
@@ -207,185 +147,191 @@
 <body>
 <header>
   <div class="nav">
-    <div class="logo">BaseLayerOS + MayIAI <span>FortressCodeAI</span></div>
+    <div class="logo">BaseLayerOS <span>FortressCodeAI</span></div>
     <nav class="nav-links">
       <a href="index.html">Home</a>
       <a href="products.html" class="active">Marketplace</a>
+      <a href="mayiai.html">Partners</a>
+      <a href="architecture.html">Architecture</a>
+      <a href="kali-schema.html">Kali Schema</a>
       <a href="contact.html">Contact</a>
       <a href="terms.html">Legal</a>
     </nav>
-    <a href="contact.html" class="nav-cta">Enterprise onboarding</a>
   </div>
 </header>
 
 <main>
-  <section class="hero">
-    <div class="hero-tagline">Enterprise marketplace</div>
-    <h1>BaseLayerOS Enterprise Packs</h1>
-    <p>
-      Curated enterprise packs built around deterministic execution, Kali‑standard governance envelopes,
-      and partner governance engines such as May I AI. Each pack is procurement‑ready, defensible in
-      regulated environments, and aligned with hyperscaler governance patterns.
-    </p>
-  </section>
+  <h1>Enterprise Marketplace</h1>
+  <p>
+    BaseLayerOS uses a hybrid pricing model combining a base engagement fee with GIU‑metered
+    deterministic execution. GIUs (Governance Integrity Units) reflect envelope complexity,
+    invariant depth, sector overlays, and audit trail generation.
+  </p>
 
-  <section>
-    <div class="packs-grid">
+  <p><strong>GIU Price:</strong> 0.25 CAD per GIU</p>
+  <p><strong>Standard Event Burn:</strong> 500 GIUs (125 CAD)</p>
+  <p><strong>Audit Trail Burn:</strong> 50 GIUs per trace segment (12.50 CAD)</p>
 
-      <!-- Governance Pack -->
-      <div class="pack-card">
-        <div class="pack-header">
-          <div>
-            <div class="pack-title">Governance Pack</div>
-            <div class="sector">GRC · Multi‑cloud governance</div>
-          </div>
-          <div class="pack-tag">Governance engine integration</div>
-        </div>
-        <div class="pack-body">
-          Governance envelope validation, policy cockpit integration, and deterministic rule enforcement.
-          Designed for organizations adopting partner governance engines—such as May I AI—through the
-          Kali Standard Envelope Schema.
-        </div>
-        <div class="pill-row">
-          <div class="pill blue">Kali envelopes</div>
-          <div class="pill">Policy cockpit</div>
-          <div class="pill orange">Multi‑cloud controls</div>
-          <div class="pill">Audit‑ready logs</div>
-        </div>
-        <div class="pack-meta">
-          <div class="price">$350,000</div>
-          <div>Governance · GRC · Enterprise</div>
-        </div>
-      </div>
-
-      <!-- AI Safety Pack -->
-      <div class="pack-card">
-        <div class="pack-header">
-          <div>
-            <div class="pack-title">AI Safety & Determinism Pack</div>
-            <div class="sector">AI/ML Ops · Safety</div>
-          </div>
-          <div class="pack-tag">AI substrate</div>
-        </div>
-        <div class="pack-body">
-          Deterministic tool‑use sandboxing, agent replay, and safety envelopes for AI systems.
-          Built for teams deploying LLMs and agents that must operate within strict capability
-          envelopes and deterministic constraints.
-        </div>
-        <div class="pill-row">
-          <div class="pill blue">Tool‑use sandbox</div>
-          <div class="pill">Replay logs</div>
-          <div class="pill orange">Safety envelopes</div>
-          <div class="pill">Deterministic constraints</div>
-        </div>
-        <div class="pack-meta">
-          <div class="price">$450,000</div>
-          <div>AI safety · Deterministic execution</div>
-        </div>
-      </div>
-
-      <!-- Healthcare Pack -->
-      <div class="pack-card">
-        <div class="pack-header">
-          <div>
-            <div class="pack-title">Healthcare Compliance Pack</div>
-            <div class="sector">Healthcare · Regulated industry</div>
-          </div>
-          <div class="pack-tag">Healthcare</div>
-        </div>
-        <div class="pack-body">
-          Deterministic governance for PHI, clinical workflows, and healthcare data access.
-          Built for organizations navigating provincial health rules, clinical safety committees,
-          and strict audit requirements.
-        </div>
-        <div class="pill-row">
-          <div class="pill blue">PHI envelopes</div>
-          <div class="pill">Clinical workflow controls</div>
-          <div class="pill orange">Compliance reporting</div>
-          <div class="pill">Zero‑knowledge audit export</div>
-        </div>
-        <div class="pack-meta">
-          <div class="price">$300,000</div>
-          <div>Healthcare · Compliance</div>
-        </div>
-      </div>
-
-      <!-- Finance Pack -->
-      <div class="pack-card">
-        <div class="pack-header">
-          <div>
-            <div class="pack-title">Finance Risk & Controls Pack</div>
-            <div class="sector">Finance · Risk & controls</div>
-          </div>
-          <div class="pack-tag">Finance</div>
-        </div>
-        <div class="pack-body">
-          Deterministic governance for treasury, trading, risk, and controls. Designed for banks,
-          funds, and fintechs requiring explainable AI, controlled data access, and defensible
-          risk postures.
-        </div>
-        <div class="pill-row">
-          <div class="pill blue">Risk envelopes</div>
-          <div class="pill">Treasury controls</div>
-          <div class="pill orange">AML/KYC overlays</div>
-          <div class="pill">Deterministic audit trails</div>
-        </div>
-        <div class="pack-meta">
-          <div class="price">$400,000</div>
-          <div>Finance · Risk · Controls</div>
-        </div>
-      </div>
-
-      <!-- Foundation Pack -->
-      <div class="pack-card">
-        <div class="pack-header">
-          <div>
-            <div class="pack-title">Deterministic Foundation Pack</div>
-            <div class="sector">Foundations · Onboarding</div>
-          </div>
-          <div class="pack-tag">Starter</div>
-        </div>
-        <div class="pack-body">
-          A foundation pack for teams adopting deterministic substrate patterns, Kali envelopes,
-          and governance‑ready workflows before scaling into full enterprise packs.
-        </div>
-        <div class="pill-row">
-          <div class="pill blue">Kernel patterns</div>
-          <div class="pill">Kali starter envelopes</div>
-          <div class="pill orange">Onboarding workflows</div>
-          <div class="pill">Developer integration guides</div>
-        </div>
-        <div class="pack-meta">
-          <div class="price">$50,000</div>
-          <div>Founders · Teams · Pilots</div>
-        </div>
-      </div>
-
+  <h2>Starter Entry Path</h2>
+  <div class="grid-3">
+    <div class="card">
+      <h3>Free Deterministic Sandbox</h3>
+      <p>
+        Submit envelopes, validate them, inspect deterministic traces, and explore invariant
+        enforcement — all without procurement.
+      </p>
+      <p class="price"><a href="sandbox.html">Open sandbox →</a></p>
     </div>
 
-    <div class="cta-row">
-      <a href="contact.html"><button class="btn-primary">Discuss enterprise deployment</button></a>
-      <a href="terms.html"><button class="btn-secondary">Review terms & compliance posture</button></a>
+    <div class="card">
+      <h3>Envelope Builder</h3>
+      <p>
+        Build Kali envelopes interactively: identity, capability, policy, invariants, execution plan.
+      </p>
+      <p class="price"><a href="envelope-builder.html">Build an envelope →</a></p>
     </div>
 
-    <p class="note">
-      Pricing is indicative and structured for enterprise procurement. Final commercial terms,
-      deployment scope, and integration timelines are agreed during onboarding.
-    </p>
-  </section>
+    <div class="card">
+      <h3>Starter GIU Pack</h3>
+      <p>
+        5,000 GIUs for early engineering teams to run real deterministic workloads.
+      </p>
+      <p class="price">$0–$500 CAD</p>
+      <button class="btn-primary" onclick="buyPack('price_abc123')">Buy Starter Pack</button>
+    </div>
+  </div>
+
+  <h2>GIU Packs</h2>
+  <div class="grid-3">
+    <div class="card">
+      <h3>Small GIU Pack</h3>
+      <p>25,000 GIUs</p>
+      <p class="price">$6,250 CAD</p>
+      <button class="btn-primary" onclick="buyPack('price_small001')">Buy Small Pack</button>
+    </div>
+
+    <div class="card">
+      <h3>Medium GIU Pack</h3>
+      <p>50,000 GIUs</p>
+      <p class="price">$12,500 CAD</p>
+      <button class="btn-primary" onclick="buyPack('price_medium002')">Buy Medium Pack</button>
+    </div>
+
+    <div class="card">
+      <h3>Large GIU Pack</h3>
+      <p>100,000 GIUs</p>
+      <p class="price">$25,000 CAD</p>
+      <button class="btn-primary" onclick="buyPack('price_large003')">Buy Large Pack</button>
+    </div>
+
+    <div class="card">
+      <h3>Enterprise GIU Pack</h3>
+      <p>250,000 GIUs</p>
+      <p class="price">$62,500 CAD</p>
+      <button class="btn-primary" onclick="buyPack('price_enterprise004')">Buy Enterprise Pack</button>
+    </div>
+  </div>
+
+  <h2>Enterprise Packs</h2>
+  <p>
+    Each pack includes substrate provisioning, envelope alignment, sector overlays, and deterministic
+    replay verification. GIU usage is billed separately based on execution volume.
+  </p>
+
+  <div class="grid-3">
+    <div class="card">
+      <h3>Foundations Pack</h3>
+      <p>Base substrate deployment, rulebook alignment, invariant configuration.</p>
+      <p class="price">Base Fee: $25,000 CAD</p>
+      <p class="pill">Includes 25,000 GIUs</p>
+      <button class="btn-primary" onclick="buyPack('price_def456')">Purchase Foundations</button>
+    </div>
+
+    <div class="card">
+      <h3>Governance Pack</h3>
+      <p>Capability mapping, policy overlays, envelope templates.</p>
+      <p class="price">Base Fee: $75,000 CAD</p>
+      <p class="pill">Includes 50,000 GIUs</p>
+      <button class="btn-primary" onclick="buyPack('price_ghi789')">Purchase Governance</button>
+    </div>
+
+    <div class="card">
+      <h3>AI Safety Pack</h3>
+      <p>AI safety overlays, hallucination‑risk controls, deterministic sandboxing.</p>
+      <p class="price">Base Fee: $90,000 CAD</p>
+      <p class="pill">Includes 60,000 GIUs</p>
+      <p class="pill">Sector Multiplier: 1.50×</p>
+      <button class="btn-primary" onclick="buyPack('price_jkl012')">Purchase AI Safety</button>
+    </div>
+
+    <div class="card">
+      <h3>Finance Risk Pack</h3>
+      <p>Finance-grade overlays for transactions, reconciliation, audit-ready traces.</p>
+      <p class="price">Base Fee: $120,000 CAD</p>
+      <p class="pill">Includes 75,000 GIUs</p>
+      <p class="pill">Sector Multiplier: 1.25×</p>
+      <button class="btn-primary" onclick="buyPack('price_mno345')">Purchase Finance Risk</button>
+    </div>
+
+    <div class="card">
+      <h3>Healthcare Compliance Pack</h3>
+      <p>PHI-safe invariants, deterministic access control, replayable compliance traces.</p>
+      <p class="price">Base Fee: $140,000 CAD</p>
+      <p class="pill">Includes 90,000 GIUs</p>
+      <p class="pill">Sector Multiplier: 1.35×</p>
+      <button class="btn-primary" onclick="buyPack('price_pqr678')">Purchase Healthcare</button>
+    </div>
+
+    <div class="card">
+      <h3>Enterprise Integration Pack</h3>
+      <p>Full enterprise rollout: multi-cloud deployment, hybrid governance integration.</p>
+      <p class="price">Base Fee: $250,000 CAD</p>
+      <p class="pill">Includes 150,000 GIUs</p>
+      <p class="pill">Sector Multiplier: 1.50×</p>
+      <button class="btn-primary" onclick="buyPack('price_stu901')">Purchase Enterprise Integration</button>
+    </div>
+  </div>
+
+  <h2>Why GIU‑Metered Pricing?</h2>
+  <p>
+    GIUs meter deterministic execution. GIUs reflect envelope complexity, invariant depth, sector
+    overlays, and audit trail generation — giving enterprises a transparent, usage‑based model
+    instead of opaque “AI credits.”
+  </p>
+
+  <p>
+    BaseLayerOS runs at <strong>~$3 CAD per million deterministic events</strong>, enabling
+    hyperscaler‑grade governance at near‑zero operational cost.
+  </p>
+
+  <p class="price"><a href="pricing.html">View GIU pricing →</a></p>
 </main>
 
 <footer>
-  <div>BaseLayerOS + MayIAI — FortressCodeAI</div>
+  <div>BaseLayerOS — FortressCodeAI</div>
   <div>Contact: fortresscodeai@outlook.com</div>
   <div class="links">
     <a href="privacy.html">Privacy Policy</a>
     <a href="terms.html">Terms of Service</a>
     <a href="refunds.html">Refund Policy</a>
     <a href="contact.html">Contact</a>
-    <a href="index.html">Home</a>
+    <a href="products.html">Enterprise Marketplace</a>
   </div>
   <div style="margin-top:10px;">© 2026 FortressCodeAI</div>
 </footer>
+
+<script>
+async function buyPack(priceId) {
+  const res = await fetch("/create-checkout-session", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ priceId })
+  });
+
+  const data = await res.json();
+  window.location.href = `https://checkout.stripe.com/pay/${data.id}`;
+}
+</script>
+
 </body>
 </html>
