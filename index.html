@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>MayIAI + BaseLayerOS | Deterministic AI Substrate</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    :root {
+      --bg: #05070a;
+      --bg-alt: #0d1016;
+      --text: #f5f7fb;
+      --muted: #8b98a5;
+      --accent-blue: #00F2FE;
+      --accent-orange: #FF7A1A;
+      --card-bg: #0b0f15;
+      --border: #1b2433;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background: radial-gradient(circle at top left, #101522 0, #05070a 55%);
+      color: var(--text);
+      min-height: 100vh;
+    }
+    a { color: var(--accent-blue); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+    header {
+      border-bottom: 1px solid var(--border);
+      background: linear-gradient(to right, rgba(0,242,254,0.06), rgba(255,122,26,0.04));
+    }
+    .nav {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 18px 20px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .logo {
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      font-size: 0.9rem;
+      color: var(--accent-blue);
+    }
+    .logo span {
+      color: var(--accent-orange);
+    }
+    .nav-links {
+      display: flex;
+      gap: 20px;
+      font-size: 0.9rem;
+    }
+    .nav-links a {
+      color: var(--muted);
+    }
+    .nav-links a.active {
+      color: var(--accent-blue);
+    }
+    .nav-cta {
+      padding: 8px 16px;
+      border-radius: 999px;
+      border: 1px solid rgba(0,242,254,0.4);
+      color: var(--accent-blue);
+      font-size: 0.85rem;
+    }
+    main {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 40px 20px 60px;
+    }
+    .hero {
+      display: grid;
+      grid-template-columns: minmax(0, 3fr) minmax(0, 2fr);
+      gap: 40px;
+      align-items: center;
+      margin-bottom: 50px;
+    }
+    @media (max-width: 800px) {
+      .hero { grid-template-columns: 1fr; }
+    }
+    .hero-title {
+      font-size: 2.4rem;
+      line-height: 1.1;
+      margin-bottom: 16px;
+    }
+    .hero-title span {
+      color: var(--accent-blue);
+    }
+    .hero-sub {
+      color: var(--muted);
+      font-size: 0.98rem;
+      max-width: 520px;
+      margin-bottom: 24px;
+    }
+    .hero-badges {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-bottom: 26px;
+    }
+    .badge {
+      font-size: 0.75rem;
+      padding: 6px 10px;
+      border-radius: 999px;
+      border: 1px solid var(--border);
+      background: rgba(11,15,21,0.9);
+      color: var(--muted);
+    }
+    .badge span {
+      color: var(--accent-orange);
+      font-weight: 500;
+    }
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+    .btn-primary {
+      padding: 10px 18px;
+      border-radius: 999px;
+      border: none;
+      background: radial-gradient(circle at top left, var(--accent-blue), #007a86);
+      color: #020304;
+      font-size: 0.9rem;
+      font-weight: 600;
+      cursor: pointer;
+    }
+    .btn-secondary {
+      padding: 10px 18px;
+      border-radius: 999px;
+      border: 1px solid var(--border);
+      background: rgba(5,7,10,0.9);
+      color: var(--muted);
+      font-size: 0.9rem;
+      cursor: pointer;
+    }
+    .hero-visual {
+      border-radius: 18px;
+      background: radial-gradient(circle at top, rgba(0,242,254,0.18), rgba(255,122,26,0.12));
+      border: 1px solid var(--border);
+      padding: 18px 18px 20px;
+      box-shadow: 0 18px 40px rgba(0,0,0,0.7);
+    }
+    .hero-visual-title {
+      font-size: 0.9rem;
+      color: var(--muted);
+      margin-bottom: 12px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .pill {
+      font-size: 0.7rem;
+      padding: 4px 8px;
+      border-radius: 999px;
+      border: 1px solid rgba(0,242,254,0.4);
+      color: var(--accent-blue);
+    }
+    .diagram {
+      border-radius: 14px;
+      border: 1px solid var(--border);
+      background: #05070a;
+      padding: 14px;
+      display: grid;
+      gap: 10px;
+      font-size: 0.8rem;
+    }
+    .diagram-row {
+      display: flex;
+      gap: 10px;
+      align-items: center;
+    }
+    .chip {
+      padding: 6px 10px;
+      border-radius: 999px;
+      background: #0b0f15;
+      border: 1px solid var(--border);
+      color: var(--muted);
+    }
+    .chip.blue { border-color: rgba(0,242,254,0.5); color: var(--accent-blue); }
+    .chip.orange { border-color: rgba(255,122,26,0.6); color: var(--accent-orange); }
+    .section {
+      margin-bottom: 40px;
+    }
+    .section h2 {
+      font-size: 1.3rem;
+      margin-bottom: 10px;
+    }
+    .section p {
+      color: var(--muted);
+      font-size: 0.9rem;
+      max-width: 720px;
+    }
+    .grid-3 {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 18px;
+      margin-top: 20px;
+    }
+    @media (max-width: 900px) {
+      .grid-3 { grid-template-columns: 1fr; }
+    }
+    .card {
+      background: var(--card-bg);
+      border-radius: 14px;
+      border: 1px solid var(--border);
+      padding: 16px 16px 18px;
+      font-size: 0.9rem;
+    }
+    .card h3 {
+      font-size: 1rem;
+      margin-bottom: 6px;
+    }
+    .card p {
+      color: var(--muted);
+      font-size: 0.85rem;
+      margin-bottom: 10px;
+    }
+    .tagline {
+      font-size: 0.75rem;
+      color: var(--accent-orange);
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      margin-bottom: 6px;
+    }
+    .price {
+      font-size: 0.95rem;
+      color: var(--accent-blue);
+      margin-top: 6px;
+    }
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 30px 20px 40px;
+      text-align: center;
+      color: var(--muted);
+      font-size: 0.8rem;
+      background: #05070a;
+    }
+    footer .links {
+      margin-top: 10px;
+      display: flex;
+      justify-content: center;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+    footer .links a {
+      color: var(--accent-blue);
+      font-size: 0.8rem;
+    }
+  </style>
+</head>
+<body>
+<header>
+  <div class="nav">
+    <div class="logo">MayIAI + BaseLayerOS <span>FortressCodeAI</span></div>
+    <nav class="nav-links">
+      <a href="index.html" class="active">Home</a>
+      <a href="products.html">Marketplace</a>
+      <a href="contact.html">Contact</a>
+      <a href="terms.html">Legal</a>
+    </nav>
+    <a href="products.html" class="nav-cta">View Enterprise Packs</a>
+  </div>
+</header>
+
+<main>
+  <section class="hero">
+    <div>
+      <div class="tagline">Deterministic AI substrate for regulated enterprises</div>
+      <h1 class="hero-title">
+        Deterministic governance for <span>AI, finance, and healthcare</span>.
+      </h1>
+      <p class="hero-sub">
+        MayIAI + BaseLayerOS is a deterministic execution substrate that wraps AI systems,
+        data access, and workflows in verifiable governance physics. Designed for hyperscaler
+        evaluation, regulated industries, and founders who refuse probabilistic behavior.
+      </p>
+      <div class="hero-badges">
+        <div class="badge"><span>Deterministic</span> state machine substrate</div>
+        <div class="badge"><span>GIU</span> governance envelopes</div>
+        <div class="badge"><span>Finance & healthcare</span> ready</div>
+        <div class="badge"><span>Stripe‑aligned</span> enterprise packs</div>
+      </div>
+      <div class="hero-actions">
+        <a href="products.html"><button class="btn-primary">Explore Enterprise Marketplace</button></a>
+        <a href="contact.html"><button class="btn-secondary">Talk about enterprise onboarding</button></a>
+      </div>
+    </div>
+    <div class="hero-visual">
+      <div class="hero-visual-title">
+        <span>Deterministic substrate topology</span>
+        <span class="pill">GIU enforced</span>
+      </div>
+      <div class="diagram">
+        <div class="diagram-row">
+          <div class="chip blue">Kernel rulebook</div>
+          <div class="chip">Invariant proofs</div>
+        </div>
+        <div class="diagram-row">
+          <div class="chip orange">Governance envelopes (Kali)</div>
+          <div class="chip">GDAL / data access</div>
+        </div>
+        <div class="diagram-row">
+          <div class="chip blue">Substrate state machine</div>
+          <div class="chip">Agent tool‑use sandbox</div>
+        </div>
+        <div class="diagram-row">
+          <div class="chip orange">Finance & healthcare packs</div>
+          <div class="chip">GIU policy cockpit</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <h2>Why deterministic AI governance matters</h2>
+    <p>
+      Enterprises don’t just need “guardrails” — they need a substrate that can be reasoned about,
+      proven, and audited. MayIAI + BaseLayerOS gives you a deterministic kernel, GIU governance
+      envelopes, and a state machine that can be modeled, verified, and trusted by hyperscalers,
+      regulators, and internal risk teams.
+    </p>
+  </section>
+
+  <section class="section">
+    <h2>Core capabilities</h2>
+    <div class="grid-3">
+      <div class="card">
+        <h3>Deterministic kernel</h3>
+        <p>
+          A rule‑driven kernel that enforces invariants, separates responsibilities, and ensures
+          every transition in the system is explainable and auditable.
+        </p>
+        <p class="price">Backed by formal modeling and substrate proofs.</p>
+      </div>
+      <div class="card">
+        <h3>GIU governance envelopes</h3>
+        <p>
+          Governance envelopes wrap data, tools, and workflows with explicit policies, constraints,
+          and enforcement logic — across clouds and regulated environments.
+        </p>
+        <p class="price">Multi‑cloud governance with deterministic physics.</p>
+      </div>
+      <div class="card">
+        <h3>Enterprise packs</h3>
+        <p>
+          Pre‑built packs for AI safety, finance risk, healthcare compliance, and deterministic
+          foundations — ready for Stripe, ready for procurement.
+        </p>
+        <p class="price">See full pricing and packs on the Marketplace.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <h2>Enterprise marketplace overview</h2>
+    <p>
+      The MayIAI + BaseLayerOS Enterprise Marketplace offers five curated packs that map directly
+      to governance, AI safety, healthcare, finance, and deterministic onboarding. Each pack is
+      designed to be deployable, explainable, and defensible in front of risk committees.
+    </p>
+    <div class="hero-actions" style="margin-top:18px;">
+      <a href="products.html"><button class="btn-primary">Open Enterprise Marketplace</button></a>
+      <a href="terms.html"><button class="btn-secondary">Review legal & compliance posture</button></a>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div>MayIAI + BaseLayerOS — FortressCodeAI</div>
+  <div>Contact: fortresscodeai@outlook.com</div>
+  <div class="links">
+    <a href="privacy.html">Privacy Policy</a>
+    <a href="terms.html">Terms of Service</a>
+    <a href="refunds.html">Refund Policy</a>
+    <a href="contact.html">Contact</a>
+    <a href="products.html">Enterprise Marketplace</a>
+  </div>
+  <div style="margin-top:10px;">© 2026 FortressCodeAI</div>
+</footer>
+</body>
+</html>
