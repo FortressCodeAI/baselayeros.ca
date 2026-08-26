@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Deployment & Integration | BaseLayerOS Deterministic Substrate</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    :root {
+      --bg: #05070a;
+      --bg-alt: #0d1016;
+      --text: #f5f7fb;
+      --muted: #8b98a5;
+      --accent-blue: #00F2FE;
+      --accent-orange: #FF7A1A;
+      --card-bg: #0b0f15;
+      --border: #1b2433;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background: radial-gradient(circle at top left, #101522 0, #05070a 55%);
+      color: var(--text);
+      min-height: 100vh;
+    }
+    a { color: var(--accent-blue); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+    header {
+      border-bottom: 1px solid var(--border);
+      background: linear-gradient(to right, rgba(0,242,254,0.06), rgba(255,122,26,0.04));
+    }
+    .nav {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 18px 20px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .logo {
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      font-size: 0.9rem;
+      color: var(--accent-blue);
+    }
+    .logo span { color: var(--accent-orange); }
+    .nav-links {
+      display: flex;
+      gap: 20px;
+      font-size: 0.9rem;
+    }
+    .nav-links a { color: var(--muted); }
+    .nav-links a.active { color: var(--accent-blue); }
+    main {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 40px 20px 60px;
+    }
+    h1 {
+      font-size: 2rem;
+      margin-bottom: 20px;
+    }
+    h2 {
+      font-size: 1.3rem;
+      margin-top: 30px;
+      margin-bottom: 10px;
+    }
+    p {
+      color: var(--muted);
+      font-size: 0.95rem;
+      max-width: 900px;
+      margin-bottom: 14px;
+      line-height: 1.5;
+    }
+    ul {
+      margin-left: 20px;
+      margin-bottom: 14px;
+    }
+    li {
+      color: var(--muted);
+      font-size: 0.9rem;
+      line-height: 1.5;
+      margin-bottom: 6px;
+    }
+    .card {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 20px;
+      margin-top: 24px;
+    }
+    .card h3 {
+      font-size: 1.1rem;
+      margin-bottom: 10px;
+    }
+    .pill-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 12px;
+    }
+    .pill {
+      padding: 4px 8px;
+      border-radius: 999px;
+      border: 1px solid var(--border);
+      background: #05070a;
+      color: var(--muted);
+      font-size: 0.75rem;
+    }
+    .pill.blue { color: var(--accent-blue); border-color: rgba(0,242,254,0.4); }
+    .pill.orange { color: var(--accent-orange); border-color: rgba(255,122,26,0.5); }
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 30px 20px 40px;
+      text-align: center;
+      color: var(--muted);
+      font-size: 0.8rem;
+      background: #05070a;
+    }
+    footer .links {
+      margin-top: 10px;
+      display: flex;
+      justify-content: center;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+    footer .links a {
+      color: var(--accent-blue);
+      font-size: 0.8rem;
+    }
+  </style>
+</head>
+
+<body>
+<header>
+  <div class="nav">
+    <div class="logo">BaseLayerOS + MayIAI <span>FortressCodeAI</span></div>
+    <nav class="nav-links">
+      <a href="index.html">Home</a>
+      <a href="products.html">Marketplace</a>
+      <a href="architecture.html">Architecture</a>
+      <a href="kali-schema.html">Kali Schema</a>
+      <a href="governance-engines.html">Governance Engines</a>
+      <a href="deployment.html" class="active">Deployment</a>
+      <a href="contact.html">Contact</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+  <h1>Deployment & Integration</h1>
+  <p>
+    BaseLayerOS is designed for enterprise deployment across regulated industries, multi‑cloud
+    environments, and on‑prem infrastructure. This page outlines how BaseLayerOS is deployed,
+    how governance engines integrate, and how deterministic execution is established end‑to‑end.
+  </p>
+
+  <h2>Deployment Models</h2>
+  <p>BaseLayerOS supports multiple deployment configurations:</p>
+
+  <div class="card">
+    <h3>Cloud Deployment</h3>
+    <p>
+      Deploy BaseLayerOS into your cloud environment (AWS, Azure, GCP). The substrate runs inside
+      your trust boundary, enforcing deterministic execution on validated envelopes.
+    </p>
+    <div class="pill-row">
+      <div class="pill blue">AWS</div>
+      <div class="pill blue">Azure</div>
+      <div class="pill blue">GCP</div>
+      <div class="pill orange">Multi‑cloud</div>
+    </div>
+  </div>
+
+  <div class="card">
+    <h3>On‑Prem / Private Cloud</h3>
+    <p>
+      For regulated industries requiring strict data locality (finance, healthcare), BaseLayerOS
+      can be deployed on‑prem or within private cloud environments.
+    </p>
+    <div class="pill-row">
+      <div class="pill blue">Bare metal</div>
+      <div class="pill">Private cloud</div>
+      <div class="pill orange">Regulated sector</div>
+    </div>
+  </div>
+
+  <div class="card">
+    <h3>Hybrid Deployment</h3>
+    <p>
+      Governance engines may run in the cloud while BaseLayerOS enforces deterministic execution
+      on‑prem. This hybrid model is common in financial institutions and healthcare networks.
+    </p>
+    <div class="pill-row">
+      <div class="pill blue">Hybrid</div>
+      <div class="pill orange">Split governance</div>
+      <div class="pill">Secure envelope flow</div>
+    </div>
+  </div>
+
+  <h2>Integration Workflow</h2>
+  <p>
+    Integration follows a deterministic, repeatable onboarding process:
+  </p>
+
+  <ul>
+    <li><strong>1. Governance Engine Selection</strong><br>
+        Choose a governance engine (e.g., May I AI) or use your internal policy engine.</li>
+
+    <li><strong>2. Envelope Generation</strong><br>
+        Governance engine produces Kali‑standard envelopes describing identity, capability,
+        policies, invariants, and execution plans.</li>
+
+    <li><strong>3. Substrate Provisioning</strong><br>
+        BaseLayerOS is deployed into your environment with kernel rulebook and invariant modules.</li>
+
+    <li><strong>4. Envelope Validation</strong><br>
+        BaseLayerOS validates envelopes deterministically using schema, rulebook, and invariant checks.</li>
+
+    <li><strong>5. Deterministic Execution</strong><br>
+        If validated, the substrate executes the plan as a deterministic state transition.</li>
+
+    <li><strong>6. Replay & Audit</strong><br>
+        Every execution produces a replayable trace for compliance and audit teams.</li>
+  </ul>
+
+  <h2>Governance Engine Integration</h2>
+  <p>
+    BaseLayerOS integrates with governance engines through the Kali Standard Envelope Schema.
+    Governance engines decide; BaseLayerOS enforces deterministically.
+  </p>
+
+  <div class="card">
+    <h3>Integration Points</h3>
+    <ul>
+      <li>Kali envelope generation</li>
+      <li>Identity & capability mapping</li>
+      <li>Policy & invariant references</li>
+      <li>Execution plan construction</li>
+      <li>Routing seal binding</li>
+    </ul>
+    <div class="pill-row">
+      <div class="pill blue">Kali envelopes</div>
+      <div class="pill orange">Deterministic enforcement</div>
+      <div class="pill">Replayable traces</div>
+    </div>
+  </div>
+
+  <h2>Enterprise Onboarding</h2>
+  <p>
+    Onboarding includes architecture review, envelope schema alignment, sector‑specific overlays,
+    and deterministic substrate provisioning.
+  </p>
+
+  <div class="card">
+    <h3>Onboarding Deliverables</h3>
+    <ul>
+      <li>Architecture review</li>
+      <li>Kali schema alignment</li>
+      <li>Sector overlays (finance, healthcare, AI safety)</li>
+      <li>Substrate deployment plan</li>
+      <li>Integration testing</li>
+      <li>Deterministic replay verification</li>
+    </ul>
+  </div>
+</main>
+
+<footer>
+  <div>BaseLayerOS + MayIAI — FortressCodeAI</div>
+  <div>Contact: fortresscodeai@outlook.com</div>
+  <div class="links">
+    <a href="privacy.html">Privacy Policy</a>
+    <a href="terms.html">Terms of Service</a>
+    <a href="refunds.html">Refund Policy</a>
+    <a href="contact.html">Contact</a>
+    <a href="index.html">Home</a>
+  </div>
+  <div style="margin-top:10px;">© 2026 FortressCodeAI</div>
+</footer>
+</body>
+</html>

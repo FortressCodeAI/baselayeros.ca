@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Contact | BaseLayerOS + MayIAI</title>
+  <title>Architecture | BaseLayerOS Deterministic Substrate</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <style>
     :root {
@@ -60,35 +60,40 @@
       font-size: 2rem;
       margin-bottom: 20px;
     }
+    h2 {
+      font-size: 1.3rem;
+      margin-top: 30px;
+      margin-bottom: 10px;
+    }
     p {
       color: var(--muted);
       font-size: 0.95rem;
-      max-width: 720px;
-      margin-bottom: 16px;
+      max-width: 900px;
+      margin-bottom: 14px;
       line-height: 1.5;
     }
-    .contact-box {
+    .diagram {
       margin-top: 30px;
       background: var(--card-bg);
       border: 1px solid var(--border);
-      border-radius: 14px;
-      padding: 20px 24px;
-      max-width: 600px;
+      border-radius: 16px;
+      padding: 20px;
     }
-    .contact-box h2 {
-      font-size: 1.3rem;
+    .diagram-row {
+      display: flex;
+      gap: 10px;
       margin-bottom: 10px;
     }
-    .contact-box p {
-      font-size: 0.9rem;
-      margin-bottom: 8px;
+    .chip {
+      padding: 6px 10px;
+      border-radius: 999px;
+      background: #0b0f15;
+      border: 1px solid var(--border);
+      color: var(--muted);
+      font-size: 0.8rem;
     }
-    .email {
-      font-size: 1rem;
-      color: var(--accent-blue);
-      font-weight: 600;
-      margin-top: 6px;
-    }
+    .chip.blue { color: var(--accent-blue); border-color: rgba(0,242,254,0.5); }
+    .chip.orange { color: var(--accent-orange); border-color: rgba(255,122,26,0.6); }
     footer {
       border-top: 1px solid var(--border);
       padding: 30px 20px 40px;
@@ -118,31 +123,69 @@
     <nav class="nav-links">
       <a href="index.html">Home</a>
       <a href="products.html">Marketplace</a>
-      <a href="contact.html" class="active">Contact</a>
+      <a href="architecture.html" class="active">Architecture</a>
+      <a href="contact.html">Contact</a>
       <a href="terms.html">Legal</a>
-      <a href="privacy.html">Privacy</a>
     </nav>
   </div>
 </header>
 
 <main>
-  <h1>Contact</h1>
+  <h1>Deterministic Substrate Architecture</h1>
   <p>
-    For enterprise onboarding, procurement discussions, technical questions, or governance engine
-    integration inquiries, you can reach FortressCodeAI directly. As a deterministic substrate
-    provider, all communication is handled personally and securely.
+    BaseLayerOS is a deterministic execution substrate designed for regulated AI systems, finance,
+    healthcare, and enterprise automation. It enforces governance physics, invariant checks, and
+    deterministic replay on all validated envelopes produced by partner governance engines such as
+    May I AI.
   </p>
 
-  <div class="contact-box">
-    <h2>Enterprise & Technical Contact</h2>
-    <p>For all inquiries related to BaseLayerOS, enterprise packs, deterministic execution, or Kali‑standard governance envelopes:</p>
-    <div class="email">fortresscodeai@outlook.com</div>
+  <h2>Core Components</h2>
+  <p>The substrate is composed of several deterministic modules:</p>
+
+  <div class="diagram">
+    <div class="diagram-row">
+      <div class="chip blue">Kernel Rulebook</div>
+      <div class="chip">Deterministic constraints</div>
+    </div>
+    <div class="diagram-row">
+      <div class="chip orange">Kali Envelope Validator</div>
+      <div class="chip">Identity & capability checks</div>
+    </div>
+    <div class="diagram-row">
+      <div class="chip blue">Invariant Engine</div>
+      <div class="chip">Safety & compliance predicates</div>
+    </div>
+    <div class="diagram-row">
+      <div class="chip blue">State Machine</div>
+      <div class="chip">Deterministic transitions</div>
+    </div>
+    <div class="diagram-row">
+      <div class="chip orange">Execution Adapter</div>
+      <div class="chip">Governance engine integration</div>
+    </div>
+    <div class="diagram-row">
+      <div class="chip blue">Replay Engine</div>
+      <div class="chip">Audit & verification</div>
+    </div>
   </div>
 
-  <p style="margin-top:20px;">
-    Response times may vary depending on workload, but enterprise inquiries are prioritized.  
-    If you are evaluating BaseLayerOS for regulated environments (finance, healthcare, AI safety),
-    please include any relevant context so your request can be handled efficiently.
+  <h2>Governance Engine Integration</h2>
+  <p>
+    BaseLayerOS does not embed a governance brain. Instead, it accepts envelopes from external
+    governance engines—such as May I AI—as long as they conform to the Kali Standard Envelope Schema.
+    This ensures governance remains modular and swappable while the substrate remains invariant.
+  </p>
+
+  <h2>Kali Standard Envelope Schema</h2>
+  <p>
+    The schema defines identity, capability, policy, invariants, constraints, and execution plans.
+    BaseLayerOS validates envelopes deterministically before executing or refusing them.
+  </p>
+
+  <h2>Deterministic Replay</h2>
+  <p>
+    Every validated envelope produces a replayable execution trace. This allows regulators, auditors,
+    and hyperscaler reviewers to verify behavior with full determinism.
   </p>
 </main>
 

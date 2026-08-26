@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Governance Engines | BaseLayerOS Deterministic Substrate</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    :root {
+      --bg: #05070a;
+      --bg-alt: #0d1016;
+      --text: #f5f7fb;
+      --muted: #8b98a5;
+      --accent-blue: #00F2FE;
+      --accent-orange: #FF7A1A;
+      --card-bg: #0b0f15;
+      --border: #1b2433;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background: radial-gradient(circle at top left, #101522 0, #05070a 55%);
+      color: var(--text);
+      min-height: 100vh;
+    }
+    a { color: var(--accent-blue); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+    header {
+      border-bottom: 1px solid var(--border);
+      background: linear-gradient(to right, rgba(0,242,254,0.06), rgba(255,122,26,0.04));
+    }
+    .nav {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 18px 20px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .logo {
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      font-size: 0.9rem;
+      color: var(--accent-blue);
+    }
+    .logo span { color: var(--accent-orange); }
+    .nav-links {
+      display: flex;
+      gap: 20px;
+      font-size: 0.9rem;
+    }
+    .nav-links a { color: var(--muted); }
+    .nav-links a.active { color: var(--accent-blue); }
+    main {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 40px 20px 60px;
+    }
+    h1 {
+      font-size: 2rem;
+      margin-bottom: 20px;
+    }
+    h2 {
+      font-size: 1.3rem;
+      margin-top: 30px;
+      margin-bottom: 10px;
+    }
+    p {
+      color: var(--muted);
+      font-size: 0.95rem;
+      max-width: 900px;
+      margin-bottom: 14px;
+      line-height: 1.5;
+    }
+    ul {
+      margin-left: 20px;
+      margin-bottom: 14px;
+    }
+    li {
+      color: var(--muted);
+      font-size: 0.9rem;
+      line-height: 1.5;
+      margin-bottom: 6px;
+    }
+    .card {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 20px;
+      margin-top: 24px;
+    }
+    .card h3 {
+      font-size: 1.1rem;
+      margin-bottom: 10px;
+    }
+    .pill-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 12px;
+    }
+    .pill {
+      padding: 4px 8px;
+      border-radius: 999px;
+      border: 1px solid var(--border);
+      background: #05070a;
+      color: var(--muted);
+      font-size: 0.75rem;
+    }
+    .pill.blue { color: var(--accent-blue); border-color: rgba(0,242,254,0.4); }
+    .pill.orange { color: var(--accent-orange); border-color: rgba(255,122,26,0.5); }
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 30px 20px 40px;
+      text-align: center;
+      color: var(--muted);
+      font-size: 0.8rem;
+      background: #05070a;
+    }
+    footer .links {
+      margin-top: 10px;
+      display: flex;
+      justify-content: center;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+    footer .links a {
+      color: var(--accent-blue);
+      font-size: 0.8rem;
+    }
+  </style>
+</head>
+
+<body>
+<header>
+  <div class="nav">
+    <div class="logo">BaseLayerOS + MayIAI <span>FortressCodeAI</span></div>
+    <nav class="nav-links">
+      <a href="index.html">Home</a>
+      <a href="products.html">Marketplace</a>
+      <a href="architecture.html">Architecture</a>
+      <a href="kali-schema.html">Kali Schema</a>
+      <a href="governance-engines.html" class="active">Governance Engines</a>
+      <a href="contact.html">Contact</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+  <h1>Governance Engines</h1>
+  <p>
+    BaseLayerOS is governance‑agnostic. It does not embed a governance brain or make policy decisions.
+    Instead, it accepts governance envelopes from external engines—such as <strong>May I AI</strong>—
+    as long as they conform to the <strong>Kali Standard Envelope Schema</strong>.
+  </p>
+
+  <h2>Why Governance Engines Are External</h2>
+  <p>
+    Governance engines evolve rapidly across industries, sectors, and regulatory environments.
+    By keeping governance external and modular, BaseLayerOS ensures:
+  </p>
+  <ul>
+    <li>Governance can be swapped without changing the substrate</li>
+    <li>Different industries can use different governance engines</li>
+    <li>Policy logic remains independent from deterministic execution</li>
+    <li>Hyperscaler reviewers can validate governance separately</li>
+  </ul>
+
+  <h2>How Governance Engines Integrate</h2>
+  <p>
+    Governance engines produce envelopes describing:
+  </p>
+  <ul>
+    <li>Identity and actor roles</li>
+    <li>Requested capabilities</li>
+    <li>Policies and constraints</li>
+    <li>Invariant requirements</li>
+    <li>Execution plans</li>
+  </ul>
+  <p>
+    BaseLayerOS validates these envelopes deterministically. If all checks pass, the substrate
+    executes the plan. If not, it refuses with a deterministic refusal trace.
+  </p>
+
+  <div class="card">
+    <h3>May I AI (Partner Governance Engine)</h3>
+    <p>
+      May I AI is a governance engine capable of producing Kali‑standard envelopes. It provides
+      policy decisions, capability boundaries, and invariant requirements. BaseLayerOS enforces
+      these decisions deterministically.
+    </p>
+    <div class="pill-row">
+      <div class="pill blue">Kali envelopes</div>
+      <div class="pill">Policy decisions</div>
+      <div class="pill orange">Capability boundaries</div>
+      <div class="pill">Invariant requirements</div>
+    </div>
+  </div>
+
+  <div class="card">
+    <h3>Other Governance Engines</h3>
+    <p>
+      Any governance engine—internal, external, open‑source, or commercial—can integrate with
+      BaseLayerOS as long as it produces envelopes conforming to the Kali Standard Envelope Schema.
+    </p>
+    <p>
+      This includes engines for:
+    </p>
+    <ul>
+      <li>Finance risk & controls</li>
+      <li>Healthcare compliance</li>
+      <li>AI safety & alignment</li>
+      <li>Enterprise GRC systems</li>
+      <li>Sector‑specific policy engines</li>
+    </ul>
+    <div class="pill-row">
+      <div class="pill blue">Modular</div>
+      <div class="pill orange">Swappable</div>
+      <div class="pill">Multi‑cloud</div>
+      <div class="pill">Enterprise‑grade</div>
+    </div>
+  </div>
+
+  <h2>Deterministic Enforcement</h2>
+  <p>
+    Governance engines decide.  
+    BaseLayerOS enforces.  
+    This separation ensures:
+  </p>
+  <ul>
+    <li>Deterministic execution</li>
+    <li>Replayable audit traces</li>
+    <li>Formal invariant guarantees</li>
+    <li>Sector‑specific compliance overlays</li>
+  </ul>
+</main>
+
+<footer>
+  <div>BaseLayerOS + MayIAI — FortressCodeAI</div>
+  <div>Contact: fortresscodeai@outlook.com</div>
+  <div class="links">
+    <a href="privacy.html">Privacy Policy</a>
+    <a href="terms.html">Terms of Service</a>
+    <a href="refunds.html">Refund Policy</a>
+    <a href="contact.html">Contact</a>
+    <a href="index.html">Home</a>
+  </div>
+  <div style="margin-top:10px;">© 2026 FortressCodeAI</div>
+</footer>
+</body>
+</html>
