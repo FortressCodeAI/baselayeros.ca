@@ -197,7 +197,7 @@
         5,000 GIUs for early engineering teams to run real deterministic workloads.
       </p>
       <p class="price">$0–$500 CAD</p>
-      <button class="btn-primary" onclick="buyPack('price_abc123')">Buy Starter Pack</button>
+      <button class="btn-primary" onclick="openPaymentModal('Starter GIU Pack', '5000 GIUs', 500)">Buy Starter Pack</button>
     </div>
   </div>
 
@@ -207,28 +207,28 @@
       <h3>Small GIU Pack</h3>
       <p>25,000 GIUs</p>
       <p class="price">$6,250 CAD</p>
-      <button class="btn-primary" onclick="buyPack('price_small001')">Buy Small Pack</button>
+      <button class="btn-primary" onclick="openPaymentModal('Small GIU Pack', '25000 GIUs', 6250)">Buy Small Pack</button>
     </div>
 
     <div class="card">
       <h3>Medium GIU Pack</h3>
       <p>50,000 GIUs</p>
       <p class="price">$12,500 CAD</p>
-      <button class="btn-primary" onclick="buyPack('price_medium002')">Buy Medium Pack</button>
+      <button class="btn-primary" onclick="openPaymentModal('Medium GIU Pack', '50000 GIUs', 12500)">Buy Medium Pack</button>
     </div>
 
     <div class="card">
       <h3>Large GIU Pack</h3>
       <p>100,000 GIUs</p>
       <p class="price">$25,000 CAD</p>
-      <button class="btn-primary" onclick="buyPack('price_large003')">Buy Large Pack</button>
+      <button class="btn-primary" onclick="openPaymentModal('Large GIU Pack', '100000 GIUs', 25000)">Buy Large Pack</button>
     </div>
 
     <div class="card">
       <h3>Enterprise GIU Pack</h3>
       <p>250,000 GIUs</p>
       <p class="price">$62,500 CAD</p>
-      <button class="btn-primary" onclick="buyPack('price_enterprise004')">Buy Enterprise Pack</button>
+      <button class="btn-primary" onclick="openPaymentModal('Enterprise GIU Pack', '250000 GIUs', 62500)">Buy Enterprise Pack</button>
     </div>
   </div>
 
@@ -244,7 +244,7 @@
       <p>Base substrate deployment, rulebook alignment, invariant configuration.</p>
       <p class="price">Base Fee: $25,000 CAD</p>
       <p class="pill">Includes 25,000 GIUs</p>
-      <button class="btn-primary" onclick="buyPack('price_def456')">Purchase Foundations</button>
+      <button class="btn-primary" onclick="openPaymentModal('Foundations Pack', '25000 GIUs', 25000)">Purchase Foundations</button>
     </div>
 
     <div class="card">
@@ -252,7 +252,7 @@
       <p>Capability mapping, policy overlays, envelope templates.</p>
       <p class="price">Base Fee: $75,000 CAD</p>
       <p class="pill">Includes 50,000 GIUs</p>
-      <button class="btn-primary" onclick="buyPack('price_ghi789')">Purchase Governance</button>
+      <button class="btn-primary" onclick="openPaymentModal('Governance Pack', '50000 GIUs', 75000)">Purchase Governance</button>
     </div>
 
     <div class="card">
@@ -261,7 +261,7 @@
       <p class="price">Base Fee: $90,000 CAD</p>
       <p class="pill">Includes 60,000 GIUs</p>
       <p class="pill">Sector Multiplier: 1.50×</p>
-      <button class="btn-primary" onclick="buyPack('price_jkl012')">Purchase AI Safety</button>
+      <button class="btn-primary" onclick="openPaymentModal('AI Safety Pack', '60000 GIUs', 90000)">Purchase AI Safety</button>
     </div>
 
     <div class="card">
@@ -270,7 +270,7 @@
       <p class="price">Base Fee: $120,000 CAD</p>
       <p class="pill">Includes 75,000 GIUs</p>
       <p class="pill">Sector Multiplier: 1.25×</p>
-      <button class="btn-primary" onclick="buyPack('price_mno345')">Purchase Finance Risk</button>
+      <button class="btn-primary" onclick="openPaymentModal('Finance Risk Pack', '75000 GIUs', 120000)">Purchase Finance Risk</button>
     </div>
 
     <div class="card">
@@ -279,7 +279,7 @@
       <p class="price">Base Fee: $140,000 CAD</p>
       <p class="pill">Includes 90,000 GIUs</p>
       <p class="pill">Sector Multiplier: 1.35×</p>
-      <button class="btn-primary" onclick="buyPack('price_pqr678')">Purchase Healthcare</button>
+      <button class="btn-primary" onclick="openPaymentModal('Healthcare Compliance Pack', '90000 GIUs', 140000)">Purchase Healthcare</button>
     </div>
 
     <div class="card">
@@ -288,7 +288,7 @@
       <p class="price">Base Fee: $250,000 CAD</p>
       <p class="pill">Includes 150,000 GIUs</p>
       <p class="pill">Sector Multiplier: 1.50×</p>
-      <button class="btn-primary" onclick="buyPack('price_stu901')">Purchase Enterprise Integration</button>
+      <button class="btn-primary" onclick="openPaymentModal('Enterprise Integration Pack', '150000 GIUs', 250000)">Purchase Enterprise Integration</button>
     </div>
   </div>
 
@@ -320,16 +320,64 @@
   <div style="margin-top:10px;">© 2026 FortressCodeAI</div>
 </footer>
 
-<script>
-async function buyPack(priceId) {
-  const res = await fetch("/create-checkout-session", {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({ priceId })
-  });
+<!-- PAYMENT MODAL -->
+<div id="paymentModal" class="modal" style="display:none;">
+  <div class="modal-content">
+    <span class="close" onclick="closePaymentModal()">&times;</span>
 
-  const data = await res.json();
-  window.location.href = `https://checkout.stripe.com/pay/${data.id}`;
+    <h2 id="modalPackName"></h2>
+    <p id="modalGIUs"></p>
+    <p id="modalPrice"></p>
+
+    <h3>Payment Options</h3>
+
+    <div class="payment-option">
+      <h4>PayPal</h4>
+      <p>Send payment to:</p>
+      <p><strong>fortresscodeai.paypal.me</strong></p>
+      <a href="https://fortresscodeai.paypal.me" target="_blank" class="btn-primary">Open PayPal</a>
+    </div>
+
+    <div class="payment-option">
+      <h4>e‑Transfer</h4>
+      <p>Send payment to:</p>
+      <p><strong>fortresscodeai@outlook.com</strong></p>
+    </div>
+
+    <hr>
+
+    <h3>GIU Delivery</h3>
+    <p>After sending payment, enter your BaseLayerOS Account ID below. Your GIUs will be issued immediately once payment is confirmed.</p>
+
+    <input type="text" id="accountIdInput" placeholder="Enter your BaseLayerOS Account ID">
+
+    <button class="btn-primary" onclick="submitGIURequest()">Submit GIU Delivery Request</button>
+
+    <p id="confirmationMessage" class="confirmation"></p>
+  </div>
+</div>
+
+<script>
+function openPaymentModal(name, gius, price) {
+  document.getElementById('modalPackName').innerText = name;
+  document.getElementById('modalGIUs').innerText = "GIUs: " + gius;
+  document.getElementById('modalPrice').innerText = "Price: $" + price + " CAD";
+  document.getElementById('paymentModal').style.display = 'block';
+}
+
+function closePaymentModal() {
+  document.getElementById('paymentModal').style.display = 'none';
+}
+
+function submitGIURequest() {
+  const accountId = document.getElementById('accountIdInput').value.trim();
+  if (!accountId) {
+    alert("Please enter your BaseLayerOS Account ID.");
+    return;
+  }
+
+  document.getElementById('confirmationMessage').innerText =
+    "GIU delivery request submitted. Your pack will be issued once payment is confirmed.";
 }
 </script>
 
