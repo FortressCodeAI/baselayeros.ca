@@ -1,7 +1,3 @@
-# -----------------------------
-# BaseLayerOS Console (Tauri + Vite)
-# -----------------------------
-
 # Node / Vite
 node_modules/
 dist/
@@ -38,10 +34,6 @@ Thumbs.db
 .idea/
 *.swp
 
-# -----------------------------
-# BaseLayerOS Deterministic Substrate (Rust)
-# -----------------------------
-
 # Rust build artifacts
 target/
 Cargo.lock
@@ -61,10 +53,6 @@ baselayeros-verification/.cache/
 baselayeros-verification/governance_packs/generated/
 baselayeros-verification/schemas/generated/
 
-# -----------------------------
-# Security / Secrets
-# -----------------------------
-
 # HMAC keys, signing keys, attestation keys
 *.key
 *.pem
@@ -72,15 +60,9 @@ baselayeros-verification/schemas/generated/
 *.crt
 *.pfx
 
-# -----------------------------
-# OS-level junk
-# -----------------------------
 ehthumbs.db
 Desktop.ini
 
-# -----------------------------
-# Python (if used for tooling)
-# -----------------------------
 __pycache__/
 *.pyc
 *.pyo
