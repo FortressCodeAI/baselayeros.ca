@@ -1,0 +1,87 @@
+# -----------------------------
+# BaseLayerOS Console (Tauri + Vite)
+# -----------------------------
+
+# Node / Vite
+node_modules/
+dist/
+dist-ssr/
+*.local
+
+# Vite cache
+.vite/
+.vite-temp/
+
+# Tauri build output
+src-tauri/target/
+src-tauri/gen/
+src-tauri/.tauri/
+
+# Logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+*.log
+
+# Environment files
+.env
+.env.*
+!.env.example
+
+# OS junk
+.DS_Store
+Thumbs.db
+
+# IDE
+.vscode/
+.idea/
+*.swp
+
+# -----------------------------
+# BaseLayerOS Deterministic Substrate (Rust)
+# -----------------------------
+
+# Rust build artifacts
+target/
+Cargo.lock
+
+# Deterministic substrate physics (DO NOT COMMIT)
+baselayeros-verification/out/
+baselayeros-verification/tmp/
+baselayeros-verification/.cache/
+
+# TLA+ model checker output
+*.toolbox/
+*.tlc
+*.out
+*.trace
+
+# Governance pack generation scratch
+baselayeros-verification/governance_packs/generated/
+baselayeros-verification/schemas/generated/
+
+# -----------------------------
+# Security / Secrets
+# -----------------------------
+
+# HMAC keys, signing keys, attestation keys
+*.key
+*.pem
+*.der
+*.crt
+*.pfx
+
+# -----------------------------
+# OS-level junk
+# -----------------------------
+ehthumbs.db
+Desktop.ini
+
+# -----------------------------
+# Python (if used for tooling)
+# -----------------------------
+__pycache__/
+*.pyc
+*.pyo
+*.pyd

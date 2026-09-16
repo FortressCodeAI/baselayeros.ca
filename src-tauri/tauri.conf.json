@@ -1,0 +1,32 @@
+{
+  "$schema": "../node_modules/@tauri-apps/cli/schema.json",
+
+  "productName": "BaseLayerOS Console",
+  "version": "2.0.0",
+  "identifier": "com.fortresscodeai.baselayeros",
+
+  "build": {
+    "beforeDevCommand": "npm run dev",
+    "beforeBuildCommand": "npm run build",
+    "devUrl": "http://localhost:5173",
+    "frontendDist": "../dist"
+  },
+
+  "app": {
+    "windows": [
+      {
+        "title": "BaseLayerOS Governance Console",
+        "width": 1280,
+        "height": 900,
+        "resizable": true
+      }
+    ]
+  },
+
+  "bundle": {
+    "active": true,
+    "targets": ["msi", "app", "dmg"]
+  },
+
+  "plugins": {}
+}

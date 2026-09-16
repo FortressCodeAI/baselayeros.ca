@@ -1,5 +1,3 @@
-// src-tauri/src/commands/substrate.rs
-
 use serde_json::Value;
 use baselayeros_verification::{
     adapters::governance_input::GovernanceInput,
@@ -13,8 +11,8 @@ use super::governance::get_active_governance_pack_cmd;
 
 #[tauri::command]
 pub fn run_substrate_cmd(vector: Value) -> SubstrateState {
-    // Determine active pack (default to AI Governance if none set)
-    let active_id = get_active_governance_pack_cmd().unwrap_or_else(|| "ai_governance".to_string());
+    let active_id = get_active_governance_pack_cmd()
+        .unwrap_or_else(|| "ai_governance".to_string());
 
     let ctx = ExecutionContext::new("schemas", "governance_packs", &active_id)
         .expect("Failed to build execution context");
@@ -33,3 +31,4 @@ pub fn run_substrate_cmd(vector: Value) -> SubstrateState {
         SealFormat::HmacV2 { key: b"test-hmac-key".to_vec() },
     )
 }
+
