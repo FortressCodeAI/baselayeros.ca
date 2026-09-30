@@ -1,215 +1,70 @@
 /* ------------------------------
-   BaseLayerOS — Professional Theme
+   Professional Background System
    ------------------------------ */
 
-:root {
-    --primary: #0D1117;
-    --accent: #3B82F6;
-    --secondary: #1F2937;
-    --surface: #F9FAFB;
-    --card: #FFFFFF;
-    --text: #111827;
-    --subtext: #4B5563;
-    --radius: 10px;
-    --shadow: 0 8px 20px rgba(0,0,0,0.08);
-}
-
+/* Global background */
 body {
-    margin: 0;
-    font-family: 'Inter', sans-serif;
-    background: var(--surface);
-    color: var(--text);
-    line-height: 1.6;
+    background: #0D1117; /* deep navy */
+    color: #F9FAFB;
 }
 
-/* Container */
-.container {
-    width: 90%;
-    max-width: 1200px;
-    margin: auto;
-}
-
-/* Header */
-.header {
-    background: var(--primary);
-    padding: 20px 0;
-    box-shadow: var(--shadow);
-}
-
-.header-inner {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-
-.logo {
-    color: #fff;
-    font-size: 26px;
-    font-weight: 600;
-}
-
-.nav a {
-    color: #fff;
-    margin-left: 24px;
-    text-decoration: none;
-    font-size: 16px;
-    opacity: 0.9;
-}
-
-.nav a:hover {
-    opacity: 1;
-}
-
-/* Hero */
+/* Hero gradient */
 .hero {
-    background: var(--secondary);
+    background: linear-gradient(
+        135deg,
+        #0D1117 0%,
+        #1F2937 40%,
+        #3B82F6 100%
+    );
     color: #fff;
-    padding: 120px 0;
+    padding: 140px 0;
     text-align: center;
 }
 
-.hero-inner h2 {
-    font-size: 42px;
-    margin-bottom: 20px;
-    font-weight: 700;
-}
-
-.hero-inner p {
-    font-size: 20px;
-    max-width: 700px;
-    margin: auto;
-    opacity: 0.9;
-}
-
-.cta {
-    margin-top: 40px;
-}
-
-.btn-primary,
-.btn-secondary {
-    padding: 16px 28px;
-    border-radius: var(--radius);
-    text-decoration: none;
-    font-size: 18px;
-    display: inline-block;
-    margin: 10px;
-}
-
-.btn-primary {
-    background: var(--accent);
-    color: #fff;
-    box-shadow: var(--shadow);
-}
-
-.btn-secondary {
-    background: #374151;
-    color: #fff;
-}
-
-/* Workflow Cards */
+/* Section backgrounds */
 .workflows {
+    background: #F3F4F6; /* soft surface */
+    color: #111827;
+    padding: 100px 0;
+}
+
+.payment {
+    background: #1F2937; /* slate */
+    color: #fff;
     padding: 80px 0;
 }
 
-.workflows h3 {
+/* Page hero backgrounds */
+.page-hero {
+    background: linear-gradient(
+        135deg,
+        #1F2937 0%,
+        #0D1117 60%
+    );
+    color: #fff;
+    padding: 100px 0;
     text-align: center;
-    font-size: 32px;
-    margin-bottom: 40px;
 }
 
-.card-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-    gap: 30px;
-}
-
+/* Card surfaces */
 .card {
-    background: var(--card);
-    padding: 30px;
-    border-radius: var(--radius);
-    box-shadow: var(--shadow);
-    transition: transform 0.2s ease;
+    background: #FFFFFF;
+    color: #111827;
+    border-radius: 12px;
+    padding: 32px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
 .card:hover {
-    transform: translateY(-4px);
-}
-
-.card h4 {
-    margin-top: 0;
-    font-size: 22px;
-    font-weight: 600;
-}
-
-.card p {
-    color: var(--subtext);
-    margin-bottom: 20px;
-}
-
-.btn-card {
-    background: var(--accent);
-    color: #fff;
-    padding: 12px 20px;
-    border-radius: var(--radius);
-    text-decoration: none;
-    font-size: 16px;
-    display: inline-block;
-}
-
-/* Page Hero */
-.page-hero {
-    background: var(--secondary);
-    color: #fff;
-    padding: 80px 0;
-    text-align: center;
-}
-
-.page-hero h2 {
-    font-size: 36px;
-    margin-bottom: 10px;
-}
-
-.page-hero p {
-    font-size: 18px;
-    opacity: 0.9;
-}
-
-.price-tag {
-    font-size: 20px;
-    font-weight: 600;
-    margin-top: 10px;
-}
-
-/* Content */
-.content {
-    padding: 60px 0;
-}
-
-.content h3 {
-    font-size: 26px;
-    margin-top: 40px;
-}
-
-.content ul,
-.content ol {
-    margin-left: 20px;
-    margin-bottom: 20px;
-}
-
-.btn-primary {
-    margin-top: 20px;
+    transform: translateY(-6px);
+    box-shadow: 0 14px 40px rgba(0,0,0,0.22);
 }
 
 /* Footer */
 .footer {
-    background: var(--primary);
+    background: #0D1117;
     color: #fff;
+    padding: 50px 0;
     text-align: center;
-    padding: 40px 0;
-    margin-top: 60px;
-}
-
-.footer-inner p {
-    margin: 6px 0;
-    opacity: 0.9;
 }
