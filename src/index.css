@@ -1,8 +1,0 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
-
-body {
-  @apply bg-primary text-textPrimary;
-  font-family: ui-sans-serif, system-ui;
-}
