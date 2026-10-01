@@ -2,62 +2,100 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>AI Action Logging Workflow — BaseLayerOS</title>
+    <title>AI Audit — BaseLayerOS</title>
     <link rel="stylesheet" href="/assets/style.css">
 </head>
 <body>
 
 <header class="header">
     <div class="container header-inner">
-        <div class="logo-block">
-            <h1 class="logo">BaseLayerOS</h1>
-            <p class="logo-sub">Deterministic Governance Substrate</p>
-        </div>
+        <h1 class="logo">BaseLayerOS</h1>
         <nav class="nav">
-            <a href="/">Home</a>
-            <a href="/identity.html">Identity Workflow</a>
-            <a href="/custom.html">Custom Integrations</a>
+            <a href="/identity.html">Identity</a>
+            <a href="/ai-audit.html" class="nav-primary">AI Audit</a>
+            <a href="/custom.html">Custom</a>
+            <a href="/">Overview</a>
         </nav>
     </div>
 </header>
 
-<section class="hero hero-brutalist hero-narrow">
-    <div class="container hero-inner">
-        <h2>AI Action Logging & Deterministic Audit Trail</h2>
-        <p>Deterministic audit workflow for AI systems. Every action traceable, explainable, and governed.</p>
-        <p class="price-tag">$250 CAD — Delivered in 48 hours</p>
-    </div>
-</section>
-
-<section class="section">
+<main class="main">
     <div class="container">
-        <h3>What You Get</h3>
-        <ul class="list">
-            <li>Deterministic logging workflow for AI actions.</li>
-            <li>Governance pack for compliance and audit readiness.</li>
-            <li>Evidence retention model.</li>
-            <li>Deployment guide for integration into existing systems.</li>
-        </ul>
 
-        <h3>Why This Matters</h3>
-        <p>AI systems increasingly participate in decisions that affect money, identity, and safety. Without a deterministic audit trail, it becomes impossible to prove what happened, when, and why. This workflow makes AI behavior governable.</p>
+        <h1>AI Action Audit</h1>
+        <p class="section-subtitle">
+            Wrap every AI action in a governed envelope and produce a replayable audit trace.
+        </p>
 
-        <h3>Payment</h3>
-        <ul class="list">
-            <li><strong>PayPal:</strong> <a href="https://paypal.me/fortresscodeai" target="_blank">paypal.me/fortresscodeai</a></li>
-            <li><strong>E‑transfer (Canada):</strong> fortresscodeai@outlook.com</li>
-        </ul>
-        <p>After payment, email your receipt and a short description of your current AI process. Work begins within 24 hours.</p>
+        <div class="workflow-layout">
 
-        <a class="btn btn-outline" href="/">Back to Home</a>
+            <div class="workflow-panel">
+                <h2>AI Envelope</h2>
+                <p>Provide the model, prompt, and parameters. The substrate will audit the action deterministically.</p>
+
+                <div class="form-group">
+                    <label class="form-label">Model</label>
+                    <input class="input" id="model" placeholder="openai:gpt-4o">
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label">Prompt</label>
+                    <textarea class="textarea" id="prompt"></textarea>
+                </div>
+
+                <div class="form-actions">
+                    <button class="btn btn-primary" onclick="runAudit()">Audit AI Action</button>
+                    <span class="form-helper">Workflow: ai.audit</span>
+                </div>
+
+                <div id="auditResult" class="result-panel"></div>
+            </div>
+
+            <div class="workflow-panel">
+                <h2>Audit Trace</h2>
+                <p>Every AI action produces a deterministic, replayable trace.</p>
+
+                <div class="result-panel" id="auditTrace">
+                    Waiting for execution…
+                </div>
+            </div>
+
+        </div>
+
     </div>
-</section>
+</main>
 
 <footer class="footer">
-    <div class="container footer-inner">
-        <p>© 2026 BaseLayerOS — Deterministic Governance Substrate</p>
+    <div class="container">
+        BaseLayerOS • Deterministic governance substrate
     </div>
 </footer>
+
+<script>
+async function runAudit() {
+    const envelope = {
+        workflow: "ai.audit",
+        payload: {
+            model: document.getElementById("model").value,
+            prompt: document.getElementById("prompt").value
+        }
+    };
+
+    const res = await fetch("https://your-render-backend.onrender.com/ai/audit", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ envelope })
+    });
+
+    const data = await res.json();
+
+    document.getElementById("auditResult").innerText =
+        JSON.stringify(data.result, null, 2);
+
+    document.getElementById("auditTrace").innerText =
+        JSON.stringify(data.governance, null, 2);
+}
+</script>
 
 </body>
 </html>
