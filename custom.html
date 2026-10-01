@@ -2,67 +2,97 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Custom Integrations — BaseLayerOS</title>
+    <title>Custom Workflow — BaseLayerOS</title>
     <link rel="stylesheet" href="/assets/style.css">
 </head>
 <body>
 
 <header class="header">
     <div class="container header-inner">
-        <div class="logo-block">
-            <h1 class="logo">BaseLayerOS</h1>
-            <p class="logo-sub">Deterministic Governance Substrate</p>
-        </div>
+        <h1 class="logo">BaseLayerOS</h1>
         <nav class="nav">
-            <a href="/">Home</a>
-            <a href="/identity.html">Identity Workflow</a>
-            <a href="/ai-audit.html">AI Audit Workflow</a>
+            <a href="/identity.html">Identity</a>
+            <a href="/ai-audit.html">AI Audit</a>
+            <a href="/custom.html" class="nav-primary">Custom</a>
+            <a href="/">Overview</a>
         </nav>
     </div>
 </header>
 
-<section class="hero hero-brutalist hero-narrow">
-    <div class="container hero-inner">
-        <h2>Custom Deterministic Integrations</h2>
-        <p>Tailored workflows and governance packs for your specific identity, AI, compliance, or operational needs.</p>
-        <p class="price-tag">Starting at $250 CAD</p>
-    </div>
-</section>
-
-<section class="section">
+<main class="main">
     <div class="container">
-        <h3>What We Can Design</h3>
-        <ul class="list">
-            <li>Onboarding and identity verification workflows.</li>
-            <li>AI safety and action governance workflows.</li>
-            <li>Compliance and audit‑ready operational workflows.</li>
-            <li>Custom deterministic governance paths for high‑risk operations.</li>
-        </ul>
 
-        <h3>How It Works</h3>
-        <ol class="list">
-            <li>You describe your current process and risks.</li>
-            <li>We design a deterministic workflow and governance pack.</li>
-            <li>You implement with or without BaseLayerOS integration.</li>
-        </ol>
+        <h1>Custom Workflow Execution</h1>
+        <p class="section-subtitle">
+            Bind any high‑risk operation to deterministic physics and governed execution.
+        </p>
 
-        <h3>Contact & Payment</h3>
-        <ul class="list">
-            <li><strong>Email:</strong> fortresscodeai@outlook.com</li>
-            <li><strong>PayPal:</strong> <a href="https://paypal.me/fortresscodeai" target="_blank">paypal.me/fortresscodeai</a></li>
-            <li><strong>E‑transfer (Canada):</strong> fortresscodeai@outlook.com</li>
-        </ul>
-        <p>Include “Custom Integration” in the subject line and a brief description of your environment.</p>
+        <div class="workflow-layout">
 
-        <a class="btn btn-outline" href="/">Back to Home</a>
+            <div class="workflow-panel">
+                <h2>Custom Envelope</h2>
+                <p>Define your workflow name and payload. The substrate will execute it deterministically.</p>
+
+                <div class="form-group">
+                    <label class="form-label">Workflow Name</label>
+                    <input class="input" id="workflowName" placeholder="finance.approval">
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label">Payload (JSON)</label>
+                    <textarea class="textarea" id="customPayload">{}</textarea>
+                </div>
+
+                <div class="form-actions">
+                    <button class="btn btn-primary" onclick="runCustom()">Execute Workflow</button>
+                    <span class="form-helper">Workflow: custom.execute</span>
+                </div>
+
+                <div id="customResult" class="result-panel"></div>
+            </div>
+
+            <div class="workflow-panel">
+                <h2>Execution Trace</h2>
+                <p>Every custom workflow produces a deterministic, replayable trace.</p>
+
+                <div class="result-panel" id="customTrace">
+                    Waiting for execution…
+                </div>
+            </div>
+
+        </div>
+
     </div>
-</section>
+</main>
 
 <footer class="footer">
-    <div class="container footer-inner">
-        <p>© 2026 BaseLayerOS — Deterministic Governance Substrate</p>
+    <div class="container">
+        BaseLayerOS • Deterministic governance substrate
     </div>
 </footer>
+
+<script>
+async function runCustom() {
+    const envelope = {
+        workflow: document.getElementById("workflowName").value,
+        payload: JSON.parse(document.getElementById("customPayload").value)
+    };
+
+    const res = await fetch("https://your-render-backend.onrender.com/custom/execute", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ envelope })
+    });
+
+    const data = await res.json();
+
+    document.getElementById("customResult").innerText =
+        JSON.stringify(data.result, null, 2);
+
+    document.getElementById("customTrace").innerText =
+        JSON.stringify(data.governance, null, 2);
+}
+</script>
 
 </body>
 </html>
