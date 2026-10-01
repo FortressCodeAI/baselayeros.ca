@@ -2,67 +2,106 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Identity Verification Workflow — BaseLayerOS</title>
+    <title>Identity Verification — BaseLayerOS</title>
     <link rel="stylesheet" href="/assets/style.css">
 </head>
 <body>
 
 <header class="header">
     <div class="container header-inner">
-        <div class="logo-block">
-            <h1 class="logo">BaseLayerOS</h1>
-            <p class="logo-sub">Deterministic Governance Substrate</p>
-        </div>
+        <h1 class="logo">BaseLayerOS</h1>
         <nav class="nav">
-            <a href="/">Home</a>
-            <a href="/ai-audit.html">AI Audit Workflow</a>
-            <a href="/custom.html">Custom Integrations</a>
+            <a href="/identity.html" class="nav-primary">Identity</a>
+            <a href="/ai-audit.html">AI Audit</a>
+            <a href="/custom.html">Custom</a>
+            <a href="/">Overview</a>
         </nav>
     </div>
 </header>
 
-<section class="hero hero-brutalist hero-narrow">
-    <div class="container hero-inner">
-        <h2>Identity Verification Workflow</h2>
-        <p>Deterministic identity verification for onboarding, compliance, and fraud prevention.</p>
-        <p class="price-tag">$250 CAD — Delivered in 48 hours</p>
-    </div>
-</section>
-
-<section class="section">
+<main class="main">
     <div class="container">
-        <h3>What You Get</h3>
-        <ul class="list">
-            <li>Mapped view of your current identity/onboarding flow.</li>
-            <li>Deterministic step‑by‑step verification workflow.</li>
-            <li>Evidence retention model.</li>
-            <li>Governance pack for compliance.</li>
-            <li>Deployment guide for immediate implementation.</li>
-        </ul>
 
-        <h3>Who This Is For</h3>
-        <ul class="list">
-            <li>Businesses handling payments or customer funds.</li>
-            <li>Platforms onboarding users into high‑risk environments.</li>
-            <li>Teams worried about fraud, fake accounts, or regulatory exposure.</li>
-        </ul>
+        <h1>Identity Verification Workflow</h1>
+        <p class="section-subtitle">
+            Deterministic identity verification with replayable envelopes and governed execution.
+        </p>
 
-        <h3>Payment</h3>
-        <ul class="list">
-            <li><strong>PayPal:</strong> <a href="https://paypal.me/fortresscodeai" target="_blank">paypal.me/fortresscodeai</a></li>
-            <li><strong>E‑transfer (Canada):</strong> fortresscodeai@outlook.com</li>
-        </ul>
-        <p>After payment, email your receipt and a short description of your current onboarding process. Work begins within 24 hours.</p>
+        <div class="workflow-layout">
 
-        <a class="btn btn-outline" href="/">Back to Home</a>
+            <div class="workflow-panel">
+                <h2>Identity Envelope</h2>
+                <p>Provide the identity payload to verify. The envelope will be executed deterministically.</p>
+
+                <div class="form-group">
+                    <label class="form-label">Full Name</label>
+                    <input class="input" id="fullName">
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label">Government ID</label>
+                    <input class="input" id="govId">
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label">Date of Birth</label>
+                    <input class="input" id="dob" placeholder="YYYY-MM-DD">
+                </div>
+
+                <div class="form-actions">
+                    <button class="btn btn-primary" onclick="runIdentity()">Verify Identity</button>
+                    <span class="form-helper">Workflow: identity.verify</span>
+                </div>
+
+                <div id="identityResult" class="result-panel"></div>
+            </div>
+
+            <div class="workflow-panel">
+                <h2>Execution Trace</h2>
+                <p>Every identity verification produces a deterministic, replayable trace.</p>
+
+                <div class="result-panel" id="identityTrace">
+                    Waiting for execution…
+                </div>
+            </div>
+
+        </div>
+
     </div>
-</section>
+</main>
 
 <footer class="footer">
-    <div class="container footer-inner">
-        <p>© 2026 BaseLayerOS — Deterministic Governance Substrate</p>
+    <div class="container">
+        BaseLayerOS • Deterministic governance substrate
     </div>
 </footer>
+
+<script>
+async function runIdentity() {
+    const envelope = {
+        workflow: "identity.verify",
+        payload: {
+            fullName: document.getElementById("fullName").value,
+            govId: document.getElementById("govId").value,
+            dob: document.getElementById("dob").value
+        }
+    };
+
+    const res = await fetch("https://your-render-backend.onrender.com/identity/verify", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ envelope })
+    });
+
+    const data = await res.json();
+
+    document.getElementById("identityResult").innerText =
+        JSON.stringify(data.result, null, 2);
+
+    document.getElementById("identityTrace").innerText =
+        JSON.stringify(data.governance, null, 2);
+}
+</script>
 
 </body>
 </html>
