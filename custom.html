@@ -1,98 +1,37 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>Custom Workflow — BaseLayerOS</title>
-    <link rel="stylesheet" href="/assets/style.css">
+  <meta charset="UTF-8">
+  <title>Custom Workflow — BaseLayerOS</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@1/css/pico.min.css">
+
+  <style>
+    body {
+      background: linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 50%, #111 100%);
+      color: #e5e5e5;
+    }
+    h1 {
+      color: #0ff;
+    }
+  </style>
+
+  <script src="https://www.paypal.com/sdk/js?client-id=sb&currency=CAD"></script>
 </head>
+
 <body>
+  <main class="container">
+    <h1>Custom Workflow Execution</h1>
+    <p>Enterprise-grade deterministic workflow execution with compliance gates.</p>
 
-<header class="header">
-    <div class="container header-inner">
-        <h1 class="logo">BaseLayerOS</h1>
-        <nav class="nav">
-            <a href="/identity.html">Identity</a>
-            <a href="/ai-audit.html">AI Audit</a>
-            <a href="/custom.html" class="nav-primary">Custom</a>
-            <a href="/">Overview</a>
-        </nav>
-    </div>
-</header>
+    <div id="paypal-custom"></div>
+  </main>
 
-<main class="main">
-    <div class="container">
-
-        <h1>Custom Workflow Execution</h1>
-        <p class="section-subtitle">
-            Bind any high‑risk operation to deterministic physics and governed execution.
-        </p>
-
-        <div class="workflow-layout">
-
-            <div class="workflow-panel">
-                <h2>Custom Envelope</h2>
-                <p>Define your workflow name and payload. The substrate will execute it deterministically.</p>
-
-                <div class="form-group">
-                    <label class="form-label">Workflow Name</label>
-                    <input class="input" id="workflowName" placeholder="finance.approval">
-                </div>
-
-                <div class="form-group">
-                    <label class="form-label">Payload (JSON)</label>
-                    <textarea class="textarea" id="customPayload">{}</textarea>
-                </div>
-
-                <div class="form-actions">
-                    <button class="btn btn-primary" onclick="runCustom()">Execute Workflow</button>
-                    <span class="form-helper">Workflow: custom.execute</span>
-                </div>
-
-                <div id="customResult" class="result-panel"></div>
-            </div>
-
-            <div class="workflow-panel">
-                <h2>Execution Trace</h2>
-                <p>Every custom workflow produces a deterministic, replayable trace.</p>
-
-                <div class="result-panel" id="customTrace">
-                    Waiting for execution…
-                </div>
-            </div>
-
-        </div>
-
-    </div>
-</main>
-
-<footer class="footer">
-    <div class="container">
-        BaseLayerOS • Deterministic governance substrate
-    </div>
-</footer>
-
-<script>
-async function runCustom() {
-    const envelope = {
-        workflow: document.getElementById("workflowName").value,
-        payload: JSON.parse(document.getElementById("customPayload").value)
-    };
-
-    const res = await fetch("https://your-render-backend.onrender.com/custom/execute", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ envelope })
-    });
-
-    const data = await res.json();
-
-    document.getElementById("customResult").innerText =
-        JSON.stringify(data.result, null, 2);
-
-    document.getElementById("customTrace").innerText =
-        JSON.stringify(data.governance, null, 2);
-}
-</script>
-
+  <script>
+    paypal.Buttons({
+      createOrder: () => fetch("/api/create-order?workflow=custom").then(r => r.json()).then(d => d.id),
+      onApprove: d => fetch(`/api/capture-order?orderID=${d.orderID}`)
+    }).render("#paypal-custom");
+  </script>
 </body>
 </html>
