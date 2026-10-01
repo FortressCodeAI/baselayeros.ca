@@ -1,107 +1,40 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>Identity Verification — BaseLayerOS</title>
-    <link rel="stylesheet" href="/assets/style.css">
+  <meta charset="UTF-8">
+  <title>Identity Verification — BaseLayerOS</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@1/css/pico.min.css">
+
+  <style>
+    body {
+      background: linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 50%, #111 100%);
+      color: #e5e5e5;
+    }
+    .container {
+      margin-top: 3rem;
+    }
+    h1 {
+      color: #0ff;
+    }
+  </style>
+
+  <script src="https://www.paypal.com/sdk/js?client-id=sb&currency=CAD"></script>
 </head>
+
 <body>
+  <main class="container">
+    <h1>Identity Verification Workflow</h1>
+    <p>Deterministic identity verification with full audit trace.</p>
 
-<header class="header">
-    <div class="container header-inner">
-        <h1 class="logo">BaseLayerOS</h1>
-        <nav class="nav">
-            <a href="/identity.html" class="nav-primary">Identity</a>
-            <a href="/ai-audit.html">AI Audit</a>
-            <a href="/custom.html">Custom</a>
-            <a href="/">Overview</a>
-        </nav>
-    </div>
-</header>
+    <div id="paypal-identity"></div>
+  </main>
 
-<main class="main">
-    <div class="container">
-
-        <h1>Identity Verification Workflow</h1>
-        <p class="section-subtitle">
-            Deterministic identity verification with replayable envelopes and governed execution.
-        </p>
-
-        <div class="workflow-layout">
-
-            <div class="workflow-panel">
-                <h2>Identity Envelope</h2>
-                <p>Provide the identity payload to verify. The envelope will be executed deterministically.</p>
-
-                <div class="form-group">
-                    <label class="form-label">Full Name</label>
-                    <input class="input" id="fullName">
-                </div>
-
-                <div class="form-group">
-                    <label class="form-label">Government ID</label>
-                    <input class="input" id="govId">
-                </div>
-
-                <div class="form-group">
-                    <label class="form-label">Date of Birth</label>
-                    <input class="input" id="dob" placeholder="YYYY-MM-DD">
-                </div>
-
-                <div class="form-actions">
-                    <button class="btn btn-primary" onclick="runIdentity()">Verify Identity</button>
-                    <span class="form-helper">Workflow: identity.verify</span>
-                </div>
-
-                <div id="identityResult" class="result-panel"></div>
-            </div>
-
-            <div class="workflow-panel">
-                <h2>Execution Trace</h2>
-                <p>Every identity verification produces a deterministic, replayable trace.</p>
-
-                <div class="result-panel" id="identityTrace">
-                    Waiting for execution…
-                </div>
-            </div>
-
-        </div>
-
-    </div>
-</main>
-
-<footer class="footer">
-    <div class="container">
-        BaseLayerOS • Deterministic governance substrate
-    </div>
-</footer>
-
-<script>
-async function runIdentity() {
-    const envelope = {
-        workflow: "identity.verify",
-        payload: {
-            fullName: document.getElementById("fullName").value,
-            govId: document.getElementById("govId").value,
-            dob: document.getElementById("dob").value
-        }
-    };
-
-    const res = await fetch("https://your-render-backend.onrender.com/identity/verify", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ envelope })
-    });
-
-    const data = await res.json();
-
-    document.getElementById("identityResult").innerText =
-        JSON.stringify(data.result, null, 2);
-
-    document.getElementById("identityTrace").innerText =
-        JSON.stringify(data.governance, null, 2);
-}
-</script>
-
+  <script>
+    paypal.Buttons({
+      createOrder: () => fetch("/api/create-order?workflow=identity").then(r => r.json()).then(d => d.id),
+      onApprove: d => fetch(`/api/capture-order?orderID=${d.orderID}`)
+    }).render("#paypal-identity");
+  </script>
 </body>
 </html>
